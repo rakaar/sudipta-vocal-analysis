@@ -49,16 +49,18 @@ for folder = 1:length(dir_info)
         end
     end
 
-    if isempty(target_file)
-        continue;  % move to next directory if no valid excel file is found
-    end
+    % if isempty(target_file)
+    %     continue;  % move to next directory if no valid excel file is found
+    % end
 
    
     data = readtable(fullfile(current_dir, target_file));
-    % rowsToRemove = data{:, 5} < 0.01;  % less than 30 ms
-    % data(rowsToRemove, :) = [];
+    size(data,1)
+    rowsToRemove = data{:, 5} < 0.02;  % less than 30 ms
+    data(rowsToRemove, :) = [];
 
     syllables_column = data{:, end-2};
+    size(syllables_column,1)
     is_harmonic_column = data{:, end-1};
 
 

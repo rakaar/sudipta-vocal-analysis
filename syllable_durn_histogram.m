@@ -1,7 +1,7 @@
 % A histogram of all syllable durations
 clear;clc
 % Initial setup
-data_path = '/media/rka/Sudipta_2/Treated';
+data_path = '/media/rka/Sudipta_2/Control';
 animal_counter = 1;
 all_animals_struct = struct();
 
@@ -37,7 +37,7 @@ end
 
 
 figure
-    histogram(1000.*all_syllable_durations)
+    histogram(all_syllable_durations)
     title('All syllable durations')
     xlabel('Syllable duration (ms)')
     ylabel('Probability')
