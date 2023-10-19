@@ -7,8 +7,8 @@ syllable_types = {'single', 'noise', 'jump', 'harmonic', 'other'};
 syllables_vs_days = cell(length(syllable_types), length(postnatal_days));
 
 
-% data_path = '/media/rka/Sudipta_2/Treated';
-data_path = '/media/rka/Sudipta_2/Control';
+data_path = '/media/rka/Sudipta_2/Treated';
+% data_path = '/media/rka/Sudipta_2/Control';
 
 animal_counter = 1;
 all_animals_struct = struct();
@@ -53,14 +53,18 @@ for folder = 1:length(dir_info)
     %     continue;  % move to next directory if no valid excel file is found
     % end
 
-   
+    % disp(fullfile(current_dir, target_file))
+    if isempty(target_file)
+        disp(current_dir)
+        continue
+    end
+
     data = readtable(fullfile(current_dir, target_file));
-    size(data,1)
-    rowsToRemove = data{:, 5} < 0.02;  % less than 30 ms
+    
+    rowsToRemove = data{:, 5} < 30/1000;  % less than 30 ms
     data(rowsToRemove, :) = [];
 
     syllables_column = data{:, end-2};
-    size(syllables_column,1)
     is_harmonic_column = data{:, end-1};
 
 

@@ -35,7 +35,7 @@ for folder = 1:length(dir_info)
     % syllables_column = data(2:end, end-2);
 
     data = readtable(fullfile(current_dir, target_file));
-    rowsToRemove = data{:, 5} < 0.03;  % less than 30 ms
+    rowsToRemove = data{:, 5} < 30/1000;  % less than 30 ms
     data(rowsToRemove, :) = [];
 
     syllables_column = data{:, end-2};
