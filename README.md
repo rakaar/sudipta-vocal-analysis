@@ -3,6 +3,7 @@
 ## Control vs Treated - Num of vocals each day
 - Data: `over_days_num_of_syllables_compare`
 - Stats: `stats_num_vocals_vs_days.m`
+- Final Figure: `modified_stats_num_vocals_vs_days.m`
 
 ## Each day difference in fraction of Syllable
 - Data: `each_day_syllable_distr_compare.m`
@@ -11,6 +12,7 @@
 ## All days, frac compare
 - Data: `frac_syllables.m`
 - Stats: `stats_all_days_frac.m`
+- Final figure: `modified_avg_fraction_syllable.m`
 
 
 ------------------------------------------------
