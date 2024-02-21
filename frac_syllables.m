@@ -2,8 +2,8 @@ clear;clc; close all;
 
 % Initial setup
 
-data_path = '/media/rka/Sudipta_2/Treated';
-% data_path = '/media/rka/Sudipta_2/Control';
+% data_path = '/media/rka/Sudipta_2/Treated';
+data_path = '/media/rka/Sudipta_2/Control';
 
 animal_counter = 1;
 all_animals_struct = struct();

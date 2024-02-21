@@ -32,10 +32,14 @@ treated_err = treated_std./sqrt(size(treated_data,1));
 % Bar plot
 figure;
 barHandles = bar([control_mean', treated_mean']);
-legend('Control','Treated');
+
+% Set bar colors
+barHandles(1).FaceColor = [0.5 0.5 0.5]; % Set first bar color to grey
+barHandles(2).FaceColor = 'k'; % Set second bar color to black
+
 title('Control vs Treated');
 
-% Getting bar x-positions
+% Getting bar x-positions for error bars
 xControl = barHandles(1).XEndPoints;
 xTreated = barHandles(2).XEndPoints;
 
@@ -43,9 +47,41 @@ xTreated = barHandles(2).XEndPoints;
 hold on;
 errorbar(xControl, control_mean, control_err, 'k.', 'linestyle', 'none', 'linewidth', 1.5, 'capsize', 10);
 errorbar(xTreated, treated_mean, treated_err, 'k.', 'linestyle', 'none', 'linewidth', 1.5, 'capsize', 10);
+hold off;
 
 % Setting x-axis labels to P5, P6,..., P11
 xticks(1:7);
 xticklabels({'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11'});
 
-hold off;
+% Adding legend
+legend(barHandles, {'Control', 'Treated'}, 'TextColor', 'k', 'EdgeColor', 'k');
+xlabel('Age (days)', 'FontSize', 18)
+ylabel('Total number of Syllabels', 'FontSize', 18)
+% Assuming control_mean, treated_mean, control_err, treated_err are defined
+% Number of data points
+% nDataPoints = length(control_mean);
+
+% % Generate x values for each group to plot
+% xControl = 1:nDataPoints; % e.g., [1 2 3 4 5 6 7]
+% xTreated = xControl + 0.1; % Slight offset to separate the error bars visually
+
+% % Create the plot
+% figure;
+% hold on;
+
+% % Plot lines connecting control and treated points
+% plot(xControl, control_mean, '-ko', 'MarkerFaceColor', 'w', 'LineWidth', 1.5, 'MarkerSize', 8);
+% plot(xTreated, treated_mean, '-ko', 'MarkerFaceColor', 'k', 'LineWidth', 1.5, 'MarkerSize', 8);
+
+% % Plot error bars for control and treated data
+% errorbar(xControl, control_mean, control_err, 'k', 'linestyle', 'none', 'linewidth', 1.5, 'capsize', 10);
+% errorbar(xTreated, treated_mean, treated_err, 'k', 'linestyle', 'none', 'linewidth', 1.5, 'capsize', 10);
+
+% % Customize the plot
+% title('Control vs Treated');
+% xticks(1:nDataPoints);
+% xticklabels({'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11'});
+% legend('Control','Treated');
+% xlabel('Age (days)');
+% ylabel('Number of Syllabels')
+% hold off;
