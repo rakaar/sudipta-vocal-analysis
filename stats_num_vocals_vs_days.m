@@ -2,7 +2,7 @@ clear;clc;
 
 control_data = load('control_vocals_vs_days').control_vocals_vs_days;
 treated_data = load('treated_vocals_vs_days').treated_vocals_vs_days;
-
+control_data(1,1) = nan;
 % change to same number of days
 control_data = control_data(:, 1:7); % P5 - P11
 treated_data = treated_data(:, 1:7); % P5 - P11
@@ -20,9 +20,13 @@ end
 
 
 % CONTROL
-control_mean = mean(control_data,1);
-control_std = std(control_data,1);
-control_err = control_std./sqrt(size(control_data,1));
+control_mean = nanmean(control_data,1);
+control_std = nanstd(control_data,1);
+control_err = zeros(7,1);
+for i = 1:7
+    control_err(i) = control_std(i)./sqrt(sum(~isnan(control_data(:,i))));
+end
+
 
 % treated
 treated_mean = mean(treated_data,1);

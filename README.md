@@ -14,7 +14,8 @@
 - Stats: `stats_all_days_frac.m`
 - Final figure: `modified_avg_fraction_syllable.m`
 
-
+##  Imagesc - syllable frac vs days
+ - `imagesc_syllables_vs_days.m`
 ------------------------------------------------
 
 ## Over days, mean number of vocals in ctrl vs treated

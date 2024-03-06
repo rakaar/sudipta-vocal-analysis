@@ -7,8 +7,8 @@ syllable_types = {'single', 'noise', 'jump', 'harmonic', 'other'};
 syllables_vs_days = cell(length(syllable_types), length(postnatal_days));
 
 
-data_path = '/media/rka/Sudipta_2/Treated';
-% data_path = '/media/rka/Sudipta_2/Control';
+% data_path = '/media/rka/Sudipta_2/Treated';
+data_path = '/media/rka/Sudipta_2/Control';
 
 animal_counter = 1;
 all_animals_struct = struct();
@@ -63,6 +63,8 @@ for folder = 1:length(dir_info)
     
     rowsToRemove = data{:, 6} < 30/1000;  % less than 30 ms
     data(rowsToRemove, :) = [];
+    rowsToRemove = data{:, 6} > 350/1000;  % less than 30 ms
+    data(rowsToRemove, :) = [];
 
     syllables_column = data{:, end-2};
     is_harmonic_column = data{:, end-1};
@@ -98,11 +100,8 @@ for folder = 1:length(dir_info)
     each_folder_frac(syllable5_index) = each_folder_frac(syllable5_index) + 1;
    end % v
 
-   if sum(each_folder_frac) == 0
-    continue
-   end
 
-   each_folder_frac = each_folder_frac./sum(each_folder_frac);
+   
 
    for s = 1:5
          syllables_vs_days{s, postnatal_day_index} = [syllables_vs_days{s, postnatal_day_index}; each_folder_frac(s)];

@@ -37,7 +37,7 @@ end
 
 
 figure
-    histogram(all_syllable_durations)
+    histogram(all_syllable_durations.*1000)
     title('All syllable durations')
     xlabel('Syllable duration (ms)')
     ylabel('Probability')
