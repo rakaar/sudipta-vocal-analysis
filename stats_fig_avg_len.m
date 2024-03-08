@@ -49,6 +49,33 @@ title('Mean and Error of Control vs. Treated');
 
 hold off;
 
+
+fig = figure;
+b = bar(data, 'grouped'); % Store handle to bar objects
+hold on;
+
+% Change bar colors
+b(1).FaceColor = 'k'; % Control bars to black
+b(2).FaceColor = [0.5 0.5 0.5]; % Treated bars to grey
+
+% Adding error bars - calculating positions for error bars
+numGroups = size(data, 1);
+numBars = size(data, 2);
+groupWidth = min(0.8, numBars/(numBars + 1.5));
+for i = 1:numBars
+    x = (1:numGroups) - groupWidth/2 + (2*i-1) * groupWidth / (2*numBars); % Compute center positions
+    errorbar(x, data(:,i), errors(:,i), 'k', 'linestyle', 'none');
+end
+
+% Customizing the graph
+set(gca, 'XTickLabel', {'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11'});
+legend('Control', 'Treated');
+ylabel('Mean len in ms');
+xlabel('P Values');
+title('Mean and Error of Control vs. Treated');
+
+hold off;
+
 % Define the days for readability in the output
 days = {'P5', 'P6', 'P7', 'P8', 'P9', 'P10', 'P11'};
 

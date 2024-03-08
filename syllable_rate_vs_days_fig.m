@@ -8,8 +8,8 @@ control_rate_days_wise_cell = cell(length(days),1);
 treated_rate_days_wise_cell = cell(length(days),1);
 
 for i = 1:length(days)
-    control_rate_days_wise_cell{i,1} = cell2mat(control_rate_cell(:,i));
-    treated_rate_days_wise_cell{i,1} = cell2mat(treated_rate_cell(:,i));
+    control_rate_days_wise_cell{i,1} = (control_rate_cell(:,i));
+    treated_rate_days_wise_cell{i,1} = (treated_rate_cell(:,i));
     
 end
 
@@ -69,8 +69,11 @@ set(gcf, 'color', 'w'); % Set background color to white
 
 for i = 1:7
     [h,p] = ttest2(control_rate_days_wise_cell{i,1},treated_rate_days_wise_cell{i,1});
-    disp(['Day ',num2str(i+4),' p-value: ',num2str(p) ' h = ' num2str(h)])
+    disp(['TTEST-Day ',num2str(i+4),' p-value: ',num2str(p) ' h = ' num2str(h)])
 
     [p,h] = ranksum(control_rate_days_wise_cell{i,1},treated_rate_days_wise_cell{i,1});
-    disp(['Day ',num2str(i+4),' p-value: ',num2str(p) ' h = ' num2str(h)])
+    disp(['RANKSUM-Day ',num2str(i+4),' p-value: ',num2str(p) ' h = ' num2str(h)])
 end
+
+
+

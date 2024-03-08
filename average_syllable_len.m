@@ -62,6 +62,8 @@ for folder = 1:length(dir_info)
     data = readtable(fullfile(current_dir, target_file));
     rowsToRemove = data{:, 6} < 30/1000;  % less than 30 ms
     data(rowsToRemove, :) = [];
+    rowsToRemove = data{:, 6} > 350/1000;  % less than 30 ms
+    data(rowsToRemove, :) = [];
 
     num_vocals = size(data,1);
     

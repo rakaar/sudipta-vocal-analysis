@@ -60,7 +60,18 @@ for folder = 1:length(dir_info)
     end
 
     data = readtable(fullfile(current_dir, target_file));
-    
+    % remove only noise syllables that are < 30 ms
+    % rowsToRemove = [];
+    % for d = 1:size(data,1)
+    %     syllable_type = string(data{d,19});
+    %     syllable_type = map_11_to_5(syllable_type);
+
+    %     if strcmp(syllable_type, 'noise') && data{d,6} < 30/1000
+    %         % disp('Reach if noise removal')
+    %         rowsToRemove = [rowsToRemove; d];
+    %     end
+    % end
+    % removing all < 30ms
     rowsToRemove = data{:, 6} < 30/1000;  % less than 30 ms
     data(rowsToRemove, :) = [];
     rowsToRemove = data{:, 6} > 350/1000;  % less than 30 ms
@@ -112,9 +123,7 @@ end
 
 
 if contains(data_path, 'Control')
-    control_syllables_vs_days = syllables_vs_days;
-    save('control_syllables_vs_days', 'control_syllables_vs_days')
+    save('control_syllables_vs_days_each_type', 'syllables_vs_days')
 elseif contains(data_path, 'Treated')
-    treated_syllables_vs_days = syllables_vs_days;
-    save('treated_syllables_vs_days', 'treated_syllables_vs_days')
+    save('treated_syllables_vs_days_each_type', 'syllables_vs_days')
 end
