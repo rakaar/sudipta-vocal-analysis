@@ -34,6 +34,9 @@ figure;
 % Grouped bar chart
 barData = [control_rate_mean, treated_rate_mean]; % Concatenate mean values for grouped display
 hb = bar(barData, 'grouped');
+hb(1).FaceColor = 'k'; % black for control
+hb(2).FaceColor = [0.5 0.5 0.5]; % gray for treated
+
 hold on;
 
 % Error bar calculation and plotting
